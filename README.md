@@ -15,7 +15,7 @@ Use ffmpeg. Avconv produces a lot of errors multiplexing the output of raspivid
 * put streamCamHls in `/usr/local/bin`.
 * check paths and settings in top of file.
 * run command streamCamHls
-* files like movie*.ts, movie.m3u8 shoud be written to OUTDIR
+* files like movie\*.ts, movie.m3u8 shoud be written to OUTDIR
 
 * now install a webserver, like nginx.
 * put file in `/etc/nginx/conf.d/enable-symlinks.conf`: contents:
@@ -29,5 +29,7 @@ disable_symlinks off;
   
   
 
+**Please use a ramdisk for OUTDIR, like `/dev/shm`, standard on Raspbian. Writing to your flash card will
+wear it out quickly.**
 
 
