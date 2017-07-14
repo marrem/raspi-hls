@@ -1,0 +1,24 @@
+#!/bin/bash
+
+WIDTH=1024
+HEIGHT=576
+FPS=25
+OUTDIR=/dev/shm/hls
+OUTFILE=movie.m3u8
+HLS_LIST_SIZE=32
+LOGLEVEL=1
+
+
+if [ ! -d $OUTDIR ];then
+  echo "$OUTDIR not found, creating"
+  mkdir $OUTDIR
+else
+  echo "Cleaning $OUTDIR"
+  rm -rf $OUTDIR/*
+fi
+
+
+echo "Starting stream ..."
+raspivid -t 0 -w $WIDTH -h $HEIGHT -fps $FPS -o - | \
+ ffmpeg -nostats -loglevel $LOGLEVEL -i - -vcodec copy -hls_time 10 -hls_list_size $HLS_LIST_SIZE $OUTDIR/$OUTFILE
+echo "Stopping stream ..."
