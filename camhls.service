@@ -1,0 +1,14 @@
+[Unit]
+Description=Camera HLS streamer
+After=network.target
+
+[Service]
+Type=simple
+User=webcam
+ExecStart=/usr/local/bin/streamCamHls
+KillMode=control-group
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
