@@ -33,3 +33,15 @@ disable_symlinks off;
 wear it out quickly.**
 
 
+
+## automatic startup / service
+
+* create a user *webcam*
+* add it to the group *video*
+* place *camhls.service* file in /etc/systemd/system
+* reload systemd deamon: `systemctl daemon-reload`
+* enable service: `systemctl enable camhls`
+* start service: `systemctl start camhls`
+
+
+
